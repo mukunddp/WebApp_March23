@@ -1,0 +1,27 @@
+
+
+	#  Steps for Django Projects # 
+
+ - Web Application and Web Site Difference
+ - HTTP Request and Responce cycle 
+ - Client and Server difference 
+ 
+ - Client Side : 
+		HTML, CSS, JavaScript, BootStrap, 
+		
+ - Server Side : / Backend 
+		Python and Django  
+
+ - DataBase : 
+		Postgres, 
+			
+
+Pycharm ; Virtual Environment ; packages (django, psycopg2);
+
+
+
+
+1) Create a Python project in system with virtual env 
+2) installed a django package in it using the command - pip install django 
+3) Create a django Project 
+	- django-admin startproject project_name 
