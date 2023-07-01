@@ -1,0 +1,98 @@
+
+
+	#  Steps for Django Projects # 
+
+ - Web Application and Web Site Difference
+ - HTTP Request and Responce cycle 
+ - Client and Server difference 
+ 
+ - Client Side : 
+		HTML, CSS, JavaScript, BootStrap, 
+		
+ - Server Side : / Backend 
+		Python and Django  
+
+ - DataBase : 
+		Postgres, 
+			
+
+Pycharm ; Virtual Environment ; packages (django, psycopg2);
+
+
+
+
+1) Create a Python project in system with virtual env 
+2) installed a django package in it using the command - pip install django 
+3) Create a django Project 
+	- django-admin startproject project_name 
+*) move our project command directory inside newly created project file 
+	- cd project_name
+	
+4) manage.py is command-line utility for administrative tasks. It manages our project 
+5) For Starting a development server we have hit a command  |  port : 8000 
+	- python manage.py runserver 
+	
+6) We need to perform migrations, for creating and updating database operations 
+	- use below command to check the exsiting migrations 
+		python manage.py makemigrations 
+		
+	- use below command to add the migrations into database
+		python manage.py migrate  
+
+	
+7) Django Provides a Admin Interface which is used to perform administrative operation in application 
+8) How to create an Admin ?
+	use below command : 
+		python manage.py createsuperuser 
+	
+	add the username and password (password is not visible)
+
+9) How to see the packages used in our project ? 
+	use below command to add the required packages of your application 
+		pip freeze> requirement.txt
+
+
+
+10)	we have created a APP based on our need (we are going to manage school so, App name is school)
+		to create a APP use below command, 
+		
+			- python manage.py startapp <APP_NAME> 
+				eg. python manage.py startapp school
+				
+	- As soon as we have created app need to add the name (school) of APP inside INSTALLED_APPS in settings.py 
+			
+11) MVT : (Models, Views, Templates)
+		- Create templates
+		- views 
+		- render function 
+		- urls 	
+		
+12) we are including urls of APP(school) inside the urlsconfig file. 
+	for that we are using a include() function from django.urls by importing into the Urls file 
+	
+	eg . 
+			from django.urls import path, include
+
+			urlpatterns = [
+				path('', include('school.urls'))
+			]
+	by this We can acess the urls file from school App into our main urlsconfig file. 
+	
+13) Now we will write all the urls of school inside that file which is there in school App 
+
+	eg, 
+		from django.urls import path
+		from . import views
+			urlpatterns = [
+				path('home/', views.home, name='Home'),
+				path('home_http/', views.home_http, name='HTTP')
+		]
+
+14) Now we are going to follow MVT arch. 
+	So, for each path in urls there should be views function as logic, 
+	
+	
+
+
+
+# Base Directory - current directory of manage.py file 

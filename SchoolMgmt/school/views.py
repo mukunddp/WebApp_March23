@@ -8,3 +8,5 @@ def home(request):
 
 def home_http(request):
     return HttpResponse('This is HTTP Response')
+
+
