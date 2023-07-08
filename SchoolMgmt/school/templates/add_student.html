@@ -23,38 +23,38 @@
                 {% csrf_token %}
                 <div class="col-md-6">
                     <label class="form-label">Name</label>
-                    <input class="form-control" type="text" name="name" placeholder="write your full name">
+                    <input class="form-control" type="text" name="name" placeholder="write your full name" required>
                 </div>
                 <div class="col-md-6">
                     <label class="form-label">Email</label>
-                    <input type="email" class="form-control" name="email" placeholder="username@domain.com">
+                    <input type="email" class="form-control" name="email" placeholder="username@domain.com" required>
                 </div>
                 <div class="col-12">
                     <label class="form-label">Address</label>
-                    <input type="text" class="form-control" name="address" placeholder="1234 Main St">
+                    <input type="text" class="form-control" name="address" placeholder="1234 Main St" required>
                 </div>
 
                 <div class="col-md-6">
                     <label class="form-label">Mobile Number</label>
-                    <input type="tel" class="form-control" name="mobile">
+                    <input type="tel" class="form-control" name="mobile" required>
                 </div>
                 <div class="col-md-4">
                     <label class="form-label">Date of Birth</label>
-                    <input class="form-control" type="date" name="dob">
+                    <input class="form-control" type="date" name="dob" >
 
                 </div>
                 <div class="col-md-2">
                     <label class="form-label">Age</label>
-                    <input type="number" class="form-control" name="age">
+                    <input type="number" class="form-control" name="age" required>
                 </div>
 
                 <div class="col-md-6">
                     <label class="form-label">Class Name</label>
-                    <input type="text" class="form-control" name="class_name" placeholder="Class of Studies">
+                    <input type="text" class="form-control" name="class_name" placeholder="Class of Studies" required>
                 </div>
                 <div class="col-md-6">
                     <label class="form-label">Roll Number</label>
-                    <input type="text" class="form-control" name="roll_no" placeholder="Write class roll number">
+                    <input type="text" class="form-control" name="roll_no" placeholder="Write class roll number" required>
                 </div>
 
                 <div class="text-center p-3">

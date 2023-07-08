@@ -37,10 +37,15 @@ def save_student(request):
     s.save()
     print('Successfully Added Data In Database')
     # save will add the changes inside the model
-    return redirect('add_student')
+    return redirect('show_students')
 
 
-# Retrieve Operation
+# Retrieve Operation / Read
 def show_students(request):
+    students_data = Student.objects.all()
+    return render(request, 'all_student_data.html', {'students_data': students_data})
 
-    return
+
+def student_details(request, pk):
+    student = Student.objects.get(id=pk)
+    return render(request, 'student_details.html', {'student': student})
