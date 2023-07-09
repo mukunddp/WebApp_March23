@@ -1,5 +1,8 @@
 from django.shortcuts import render, HttpResponse, redirect
-from .models import Student
+from .models import Student, UserRegisterForm
+from django.http import HttpResponseRedirect
+from django.urls import reverse_lazy
+from django.views.generic.edit import CreateView
 
 
 # Create your views here. # Logic
@@ -7,16 +10,15 @@ def home(request):
     return render(request, 'home.html')
 
 
-def home_http(request):
-    return HttpResponse('This is HTTP Response')
-
-
-def signup(request):
-    return render(request, 'signup.html')
+# Register User
+class Register(CreateView):
+    form_class = UserRegisterForm
+    success_url = reverse_lazy("login")
+    template_name = "registration/signup.html"
 
 
 def login(request):
-    return render(request, 'login.html')
+    return HttpResponseRedirect("/accounts/login")
 
 
 def add_student(request):
