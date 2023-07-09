@@ -2,59 +2,61 @@
 {% block pagetitle %} Home Page {% endblock pagetitle %}
 {% block content %}
 {% include 'navbar.html' %}
-
-
 <section class="container mt-5" style="background-color: white;">
     <div class="text-center">
         <h2 class="p-3" style="color: rgb(19, 93, 196);">
-            Add Students here!
+            Update <span style="color:red">{{student.name}}'s</span> Details!
         </h2>
     </div>
     <hr>
     <div class="p-3">
         <!-- Action should be added in side form  (call perticular url) the data will be sent by POST method ̥-->
-        <form class="row g-3" action="{% url 'save_student' %}" method="post">
+        <form class="row g-3" action="{% url 'update_student' student.id %}" method="post">
             <!-- need to add CSRF token It will validate our form -->
             {% csrf_token %}
             <div class="col-md-6">
                 <label class="form-label">Name</label>
-                <input class="form-control" type="text" name="name" placeholder="write your full name" required>
+                <input class="form-control" type="text" name="name" value="{{student.name}}"
+                       placeholder="write your full name" required>
             </div>
             <div class="col-md-6">
                 <label class="form-label">Email</label>
-                <input type="email" class="form-control" name="email" placeholder="username@domain.com" required>
+                <input type="email" class="form-control" name="email" value="{{student.email}}"
+                       placeholder="username@domain.com" required>
             </div>
             <div class="col-12">
                 <label class="form-label">Address</label>
-                <input type="text" class="form-control" name="address" placeholder="1234 Main St" required>
+                <input type="text" class="form-control" name="address" value="{{student.address}}"
+                       placeholder="1234 Main St" required>
             </div>
 
             <div class="col-md-6">
                 <label class="form-label">Mobile Number</label>
-                <input type="tel" class="form-control" name="mobile" required>
+                <input type="tel" class="form-control" name="mobile" value="{{student.mobile_no}}" required>
             </div>
             <div class="col-md-4">
                 <label class="form-label">Date of Birth</label>
-                <input class="form-control" type="date" name="dob">
-
+                <input class="form-control" name="dob" value="{{student.dob}}" disabled>
             </div>
             <div class="col-md-2">
                 <label class="form-label">Age</label>
-                <input type="number" class="form-control" name="age" required>
+                <input type="number" class="form-control" name="age" value="{{student.age}}" required>
             </div>
 
             <div class="col-md-6">
                 <label class="form-label">Class Name</label>
-                <input type="text" class="form-control" name="class_name" placeholder="Class of Studies" required>
+                <input type="text" class="form-control" name="class_name" value="{{student.class_name}}"
+                       placeholder="Class of Studies" required>
             </div>
             <div class="col-md-6">
                 <label class="form-label">Roll Number</label>
-                <input type="text" class="form-control" name="roll_no" placeholder="Write class roll number" required>
+                <input type="text" class="form-control" name="roll_no" value="{{student.roll_no }}"
+                       placeholder="Write class roll number" required>
             </div>
 
             <div class="text-center p-3">
-                <!-- Button Type Should be submit to call the form action -->
-                <button type="submit" class="btn btn-primary">Add Student</button>
+                <!-- Button Type Should be submitted to call the form action -->
+                <button type="submit" class="btn btn-primary">Update Student</button>
             </div>
         </form>
     </div>

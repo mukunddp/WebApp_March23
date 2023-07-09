@@ -49,3 +49,35 @@ def show_students(request):
 def student_details(request, pk):
     student = Student.objects.get(id=pk)
     return render(request, 'student_details.html', {'student': student})
+
+
+# UPDATE Operation
+# def update_student_details(request, pk):
+#     student = Student.objects.get(id=pk)
+#     return render(request, 'update_student_details.html', {'student': student})
+
+
+def update_student(request, pk):
+    s = Student.objects.get(id=pk)
+    if request.method == "POST":
+        s.name = request.POST.get('name')
+        s.email = request.POST.get('email')
+        s.address = request.POST.get('address')
+        s.age = request.POST.get('age')
+        s.mobile_no = request.POST.get('mobile')
+        # s.dob = request.POST.get('dob')
+        s.class_name = request.POST.get('class_name')
+        s.roll_no = request.POST.get('roll_no')
+        s.save()
+        print('Successfully Updated Data In Database')
+        # save will add the changes inside the model
+        return redirect('show_students')
+    return render(request, 'update_student_details.html', {'student': s})
+
+
+# Delete Operation
+def delete_student(request, pk):
+    student = Student.objects.get(id=pk)
+    student.delete()
+    print('Successfully Deleted Data In Database')
+    return redirect('show_students')
