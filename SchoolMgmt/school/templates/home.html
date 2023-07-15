@@ -2,8 +2,18 @@
 {% block pagetitle %} Home Page {% endblock pagetitle %}
 {% block content %}
 {% include 'navbar.html' %}
+{% load static %}
+<section style="
+background-image: url('{% static 'img/background.jpg' %}');
+background-size: cover;
+margin: 0;
+padding: 0;
+background-position: center;
+min-height: 110vh;">
 
-<h2>This is Home Page</h2>
+    <h1 class="home-heading"> School Management System </h1>
+</section>
+
 {% endblock %}
 
 

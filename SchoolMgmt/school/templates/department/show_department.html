@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block pagetitle %} Home Page {% endblock pagetitle %}
+{% block content %}
+{% include 'navbar.html' %}
+<section class="container mt-5" style="background-color: white;">
+    <div class="text-center">
+        <h2 class="p-3" style="color: rgb(19, 93, 196);">
+            This is {{department.name}} Department!
+        </h2>
+    </div>
+    <hr>
+    <div class="p-2">
+
+        <div class="card mt-3">
+            <div class="card-header">
+                <h5 class="card-title">{{department.hod}}
+                    <span>
+                        <a href="{% url 'delete_department' department.id %}" class="btn btn-danger float-end">Delete</a>
+                        <a href="{% url 'update_department' department.id %}" class="btn btn-info float-end me-2">Update</a>
+                    </span>
+                </h5>
+            </div>
+            <div class="card-body">
+                <p> {{department.description}} </p>
+            </div>
+        </div>
+
+    </div>
+</section>
+{% endblock %}

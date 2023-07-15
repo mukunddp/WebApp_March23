@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% block pagetitle %} Home Page {% endblock pagetitle %}
+{% block content %}
+{% include 'navbar.html' %}
+{% load static %}
+
+
+
+<section class="container mt-5" style="background-color: white;">
+    <div class="text-center">
+        <h2 class="p-3" style="color: rgb(19, 93, 196);">
+            Add Teachers Detail!
+        </h2>
+    </div>
+    <hr>
+    <div class="p-3">
+        <!-- Action should be added in side form  (call perticular url) the data will be sent by POST method ̥-->
+        <form class="row g-3" action="{% url 'add_teacher' %}" method="post">
+            <!-- need to add CSRF token It will validate our form -->
+            {% csrf_token %}
+            <div class="col-md-6">
+                <label class="form-label">Name</label>
+                <input class="form-control" type="text" name="name" placeholder="Write your full name of Teacher" required>
+            </div>
+            <div class="col-md-6">
+                <label class="form-label">Email</label>
+                <input type="email" class="form-control" name="email" placeholder="username@domain.com" required>
+            </div>
+            <div class="col-8">
+                <label class="form-label">Subjects</label>
+                <input type="text" class="form-control" name="subjects" placeholder="Subjects" required>
+            </div>
+            <div class="col-4">
+                <label class="form-label">Select Department</label>
+                <select class="form-select" name="department">
+                    <option selected disabled>Select the department</option>
+                    {% for department in departments %}
+                        <option value="{{department.id}}">{{department.name}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-12">
+                <label class="form-label">Address</label>
+                <input type="text" class="form-control" name="address" placeholder="1234 Main St" required>
+            </div>
+
+            <div class="col-md-6">
+                <label class="form-label">Mobile Number</label>
+                <input type="tel" class="form-control" name="mobile_no" required>
+            </div>
+            <div class="col-md-4">
+                <label class="form-label">Date of Birth</label>
+                <input class="form-control" type="date" name="dob">
+
+            </div>
+            <div class="col-md-2">
+                <label class="form-label">Age</label>
+                <input type="number" class="form-control" name="age" required>
+            </div>
+
+            <div class="col-md-6">
+                <label class="form-label">Qualification</label>
+                <input type="text" class="form-control" name="qualification" placeholder="Class of Studies" required>
+            </div>
+            <div class="col-md-6">
+                <label class="form-label">Designation</label>
+                <input type="text" class="form-control" name="designation" placeholder="Write class roll number"
+                    required>
+            </div>
+
+            <div class="text-center p-3">
+                <!-- Button Type Should be submit to call the form action -->
+                <button type="submit" class="btn btn-primary">Add Teacher</button>
+            </div>
+        </form>
+    </div>
+</section>
+
+{% endblock %}

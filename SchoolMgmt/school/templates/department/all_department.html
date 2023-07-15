@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block pagetitle %} Home Page {% endblock pagetitle %}
+{% block content %}
+{% include 'navbar.html' %}
+<section class="container mt-5" style="background-color: white;">
+    <div class="text-center">
+        <h2 class="p-3" style="color: rgb(19, 93, 196);">
+            List of Teachers !
+        </h2>
+    </div>
+    <hr>
+    <div class="p-2">
+        {% for department in departments %}
+        <div class="card mt-3">
+            <div class="card-header">
+                {{department.name}} | {{ department.hod }} 
+                <a href="{% url 'show_department' department.id %}" class="btn btn-primary float-end">See More..</a>
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">{{department.description}}</h5>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}

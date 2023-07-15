@@ -1,5 +1,5 @@
 from django.shortcuts import render, HttpResponse, redirect
-from .models import Student, UserRegisterForm
+from .models import Student, UserRegisterForm, Teachers, Departments, Highlights
 from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
 from django.views.generic.edit import CreateView
@@ -83,3 +83,122 @@ def delete_student(request, pk):
     student.delete()
     print('Successfully Deleted Data In Database')
     return redirect('show_students')
+
+
+# CRUD Teachers
+def add_teacher(request):
+    d = Departments.objects.all()
+    if request.method == 'POST':
+        t = Teachers()
+        t.name = request.POST.get('name')
+        t.email = request.POST.get('email')
+        t.subjects = request.POST.get('subjects')
+        t.address = request.POST.get('address')
+        t.age = request.POST.get('age')
+        t.dob = request.POST.get('dob')
+        t.mobile_no = request.POST.get('mobile_no')
+        t.qualification = request.POST.get('qualification')
+        t.designation = request.POST.get('designation')
+        department_id = request.POST.get('department')
+        d = Departments.objects.get(id=department_id)
+        t.department = d
+        t.save()
+        return redirect('all_teachers')
+    return render(request, 'teachers/add_teacher.html', {'departments': d})
+
+
+def all_teachers(request):
+    t = Teachers.objects.all()
+    return render(request, 'teachers/all_teachers.html', {'all_teachers': t})
+
+
+def show_teacher(request, pk):
+    t = Teachers.objects.get(id=pk)
+    return render(request, 'teachers/show_teacher.html', {'teacher': t})
+
+
+def update_teacher(request, pk):
+    t = Teachers.objects.get(id=pk)
+    if request.method == 'POST':
+        t.name = request.POST.get('name')
+        t.email = request.POST.get('email')
+        t.subjects = request.POST.get('subjects')
+        t.address = request.POST.get('address')
+        t.age = request.POST.get('age')
+        t.dob = request.POST.get('dob')
+        t.mobile_no = request.POST.get('mobile_no')
+        t.qualification = request.POST.get('qualification')
+        t.designation = request.POST.get('designation')
+        department_id = request.POST.get('department')
+        d = Departments.objects.get(id=department_id)
+        t.department = d
+        t.save()
+        return redirect('all_teachers')
+    return render(request, 'teachers/update_teacher.html', {'teacher': t})
+
+
+def delete_teacher(request, pk):
+    t = Teachers.objects.get(id=pk)
+    t.delete()
+    return redirect('all_teachers')
+
+
+# CRUD Department
+def add_department(request):
+    if request.method == 'POST':
+        d = Departments()
+        d.name = request.POST.get('name')
+        d.description = request.POST.get('description')
+        d.hod = request.POST.get('hod')
+        d.save()
+        return redirect('all_departments')
+    return render(request, 'department/add_department.html')
+
+
+def all_department(request):
+    d = Departments.objects.all()
+    return render(request, 'department/all_department.html', {'departments': d})
+
+
+def show_department(request, pk):
+    d = Departments.objects.get(id=pk)
+    return render(request, 'department/show_department.html', {'department': d})
+
+
+def update_department(request, pk):
+    d = Departments.objects.get(id=pk)
+    if request.method == 'POST':
+        d.name = request.POST.get('name')
+        d.description = request.POST.get('description')
+        d.hod = request.POST.get('hod')
+        d.save()
+        return redirect('all_departments')
+    return render(request, 'department/update_department.html', {'department': d})
+
+
+def delete_department(request, pk):
+    d = Departments.objects.get(id=pk)
+    d.delete()
+    return redirect('all_departments')
+
+
+# CRUD Highlights
+def add_highlight(request):
+    if request.method == 'POST':
+        h = Highlights()
+        h.name = request.POST.get('name')
+        h.name = request.POST.get('name')
+        h.save()
+        return redirect('show_highlights')
+    return render(request, 'highlights/add_highlight.html')
+
+
+def show_highlights(request):
+    h = Highlights.objects.all()
+    return render(request, 'highlights/show_highlights.html', {'highlights': h})
+
+
+def delete_highlight(request, pk):
+    h = Highlights.objects.get(id=pk)
+    h.delete()
+    return redirect('show_highlights')

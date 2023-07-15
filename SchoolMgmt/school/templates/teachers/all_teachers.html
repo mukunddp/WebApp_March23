@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block pagetitle %} Home Page {% endblock pagetitle %}
+{% block content %}
+{% include 'navbar.html' %}
+<section class="container mt-5" style="background-color: white;">
+    <div class="text-center">
+        <h2 class="p-3" style="color: rgb(19, 93, 196);">
+            List of Teachers !
+        </h2>
+    </div>
+    <hr>
+    <div class="p-2">
+        {% for teacher in all_teachers %}
+        <div class="card mt-3">
+            <div class="card-header">
+                {{teacher.roll_no}} | {{ teacher.mobile_no }} | {{ teacher.email }}
+                <a href="{% url 'show_teacher' teacher.id %}" class="btn btn-primary float-end">See More..</a>
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">{{teacher.name}} | {{teacher.age}}</h5>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}

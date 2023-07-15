@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block pagetitle %} Home Page {% endblock pagetitle %}
+{% block content %}
+{% include 'navbar.html' %}
+{% load static %}
+
+
+
+<section class="container mt-5" style="background-color: white;">
+    <div class="text-center">
+        <h2 class="p-3" style="color: rgb(19, 93, 196);">
+            Add Teachers Detail!
+        </h2>
+    </div>
+    <hr>
+    <div class="p-3">
+        <!-- Action should be added in side form  (call perticular url) the data will be sent by POST method ̥-->
+        <form class="row g-3" action="{% url 'add_department' %}" method="post">
+            <!-- need to add CSRF token It will validate our form -->
+            {% csrf_token %}
+            <div class="col-md-6">
+                <label class="form-label">Department Name</label>
+                <input class="form-control" type="text" name="name" placeholder="Write your full name of Teacher"
+                    required>
+            </div>
+            <div class="col-md-6">
+                <label class="form-label">Head of Department</label>
+                <input type="text" class="form-control" name="hod" placeholder="Enter Name of HOD" required>
+            </div>
+            <div class="col-12">
+                <label class="form-label">Description</label>
+                <textarea type="text" class="form-control" name="description" placeholder="Subjects" required></textarea>
+            </div>
+            <div class="text-center p-3">
+                <!-- Button Type Should be submit to call the form action -->
+                <button type="submit" class="btn btn-primary">Add Department</button>
+            </div>
+        </form>
+    </div>
+</section>
+
+{% endblock %}

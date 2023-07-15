@@ -17,6 +17,30 @@ class Student(models.Model):
     class_name = models.CharField(max_length=50)
 
 
+class Teachers(models.Model):
+    name = models.CharField(max_length=150)
+    email = models.EmailField()
+    subjects = models.CharField(max_length=500)
+    address = models.TextField()
+    age = models.IntegerField()
+    dob = models.DateTimeField()
+    mobile_no = models.BigIntegerField()
+    qualification = models.CharField(max_length=500)
+    designation = models.CharField(max_length=100)
+    department = models.ForeignKey('school.Departments', on_delete=models.CASCADE)
+
+
+class Departments(models.Model):
+    name = models.CharField(max_length=100)
+    description = models.TextField()
+    hod = models.CharField(max_length=100)
+
+
+class Highlights(models.Model):
+    name = models.CharField(max_length=500)
+    link = models.TextField()
+
+
 class UserRegisterForm(UserCreationForm):
     email = forms.EmailField()
 
