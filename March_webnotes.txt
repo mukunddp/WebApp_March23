@@ -96,3 +96,33 @@ Pycharm ; Virtual Environment ; packages (django, psycopg2);
 
 
 # Base Directory - current directory of manage.py file 
+
+
+Project to Complete : 31st March 
+
+Login	
+	User login
+Register	
+	Register normal User 
+	
+	Admin Register Page 
+	Admin is by default in the system 
+	{ 	
+		Super admin will add the email address of sub admins in database 
+	} 	
+	DataBase Model : EmailSubadmin = ['', '',]
+		if 
+			while registering subadmin verify that email from EmailSubadmin 
+		else 
+			Send a message UI unable add as admin please contact admin 
+
+Home Page	
+	
+	User - 
+		Case Register Form
+		Status of earlier Case registration (Active)
+		Download Stamp Paper
+		
+	Admin - 
+		Show all registered cases list
+		Every case will haveing status as pending/Active/Complete

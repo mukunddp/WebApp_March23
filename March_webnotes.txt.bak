@@ -61,6 +61,65 @@ Pycharm ; Virtual Environment ; packages (django, psycopg2);
 				
 	- As soon as we have created app need to add the name (school) of APP inside INSTALLED_APPS in settings.py 
 			
+11) MVT : (Models, Views, Templates)
+		- Create templates
+		- views 
+		- render function 
+		- urls 	
+		
+12) we are including urls of APP(school) inside the urlsconfig file. 
+	for that we are using a include() function from django.urls by importing into the Urls file 
+	
+	eg . 
+			from django.urls import path, include
+
+			urlpatterns = [
+				path('', include('school.urls'))
+			]
+	by this We can acess the urls file from school App into our main urlsconfig file. 
+	
+13) Now we will write all the urls of school inside that file which is there in school App 
+
+	eg, 
+		from django.urls import path
+		from . import views
+			urlpatterns = [
+				path('home/', views.home, name='Home'),
+				path('home_http/', views.home_http, name='HTTP')
+		]
+
+14) Now we are going to follow MVT arch. 
+	So, for each path in urls there should be views function as logic, 
+	
+	
+
 
 
 # Base Directory - current directory of manage.py file 
+
+Login	
+	User login
+Register	
+	Register normal User 
+	
+	Admin Register Page 
+	Admin is by default in the system
+	{ 	
+		Super admin will add the email address of sub admins in database 
+	} 	
+	DataBase Model : EmailSubadmin = ['', '',]
+		if 
+			while registering subadmin verify that email from EmailSubadmin 
+		else 
+			Send a message UI unable add as admin please contact admin 
+
+Home Page	
+	
+	User - 
+		Case Register Form
+		Status of earlier Case registration (Active)
+		Download Stamp Paper
+		
+	Admin - 
+		Show all registered cases list
+		Every case will haveing status as pending/Active/Complete
