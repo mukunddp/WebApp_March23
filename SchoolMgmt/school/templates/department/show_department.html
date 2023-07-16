@@ -14,10 +14,15 @@
         <div class="card mt-3">
             <div class="card-header">
                 <h5 class="card-title">{{department.hod}}
+                    {% if request.user.is_authenticated %}
                     <span>
-                        <a href="{% url 'delete_department' department.id %}" class="btn btn-danger float-end">Delete</a>
-                        <a href="{% url 'update_department' department.id %}" class="btn btn-info float-end me-2">Update</a>
+                        <a href="{% url 'delete_department' department.id %}"
+                            class="btn btn-danger float-end">Delete</a>
+                        <a href="{% url 'update_department' department.id %}"
+                            class="btn btn-info float-end me-2">Update</a>
                     </span>
+                    {% endif %}
+
                 </h5>
             </div>
             <div class="card-body">

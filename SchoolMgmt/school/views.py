@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, HttpResponse, redirect
 from .models import Student, UserRegisterForm, Teachers, Departments, Highlights
 from django.http import HttpResponseRedirect
@@ -6,8 +7,10 @@ from django.views.generic.edit import CreateView
 
 
 # Create your views here. # Logic
+
 def home(request):
-    return render(request, 'home.html')
+    h = Highlights.objects.all()
+    return render(request, 'home.html', {'highlights': h})
 
 
 # Register User
@@ -20,12 +23,13 @@ class Register(CreateView):
 def login(request):
     return HttpResponseRedirect("/accounts/login")
 
-
+@login_required
 def add_student(request):
     return render(request, 'add_student.html')
 
 
 # Create Operation
+@login_required
 def save_student(request):
     s = Student()
     s.name = request.POST.get('name')
@@ -47,7 +51,7 @@ def show_students(request):
     students_data = Student.objects.all()
     return render(request, 'all_student_data.html', {'students_data': students_data})
 
-
+@login_required
 def student_details(request, pk):
     student = Student.objects.get(id=pk)
     return render(request, 'student_details.html', {'student': student})
@@ -58,7 +62,7 @@ def student_details(request, pk):
 #     student = Student.objects.get(id=pk)
 #     return render(request, 'update_student_details.html', {'student': student})
 
-
+@login_required
 def update_student(request, pk):
     s = Student.objects.get(id=pk)
     if request.method == "POST":
@@ -78,6 +82,7 @@ def update_student(request, pk):
 
 
 # Delete Operation
+@login_required
 def delete_student(request, pk):
     student = Student.objects.get(id=pk)
     student.delete()
@@ -86,6 +91,7 @@ def delete_student(request, pk):
 
 
 # CRUD Teachers
+@login_required
 def add_teacher(request):
     d = Departments.objects.all()
     if request.method == 'POST':
@@ -111,12 +117,12 @@ def all_teachers(request):
     t = Teachers.objects.all()
     return render(request, 'teachers/all_teachers.html', {'all_teachers': t})
 
-
+@login_required
 def show_teacher(request, pk):
     t = Teachers.objects.get(id=pk)
     return render(request, 'teachers/show_teacher.html', {'teacher': t})
 
-
+@login_required
 def update_teacher(request, pk):
     t = Teachers.objects.get(id=pk)
     if request.method == 'POST':
@@ -136,7 +142,7 @@ def update_teacher(request, pk):
         return redirect('all_teachers')
     return render(request, 'teachers/update_teacher.html', {'teacher': t})
 
-
+@login_required
 def delete_teacher(request, pk):
     t = Teachers.objects.get(id=pk)
     t.delete()
@@ -144,6 +150,7 @@ def delete_teacher(request, pk):
 
 
 # CRUD Department
+@login_required
 def add_department(request):
     if request.method == 'POST':
         d = Departments()
@@ -159,12 +166,12 @@ def all_department(request):
     d = Departments.objects.all()
     return render(request, 'department/all_department.html', {'departments': d})
 
-
+@login_required
 def show_department(request, pk):
     d = Departments.objects.get(id=pk)
     return render(request, 'department/show_department.html', {'department': d})
 
-
+@login_required
 def update_department(request, pk):
     d = Departments.objects.get(id=pk)
     if request.method == 'POST':
@@ -175,7 +182,7 @@ def update_department(request, pk):
         return redirect('all_departments')
     return render(request, 'department/update_department.html', {'department': d})
 
-
+@login_required
 def delete_department(request, pk):
     d = Departments.objects.get(id=pk)
     d.delete()
@@ -183,11 +190,12 @@ def delete_department(request, pk):
 
 
 # CRUD Highlights
+@login_required
 def add_highlight(request):
     if request.method == 'POST':
         h = Highlights()
         h.name = request.POST.get('name')
-        h.name = request.POST.get('name')
+        h.link = request.POST.get('link')
         h.save()
         return redirect('show_highlights')
     return render(request, 'highlights/add_highlight.html')
@@ -197,7 +205,7 @@ def show_highlights(request):
     h = Highlights.objects.all()
     return render(request, 'highlights/show_highlights.html', {'highlights': h})
 
-
+@login_required
 def delete_highlight(request, pk):
     h = Highlights.objects.get(id=pk)
     h.delete()

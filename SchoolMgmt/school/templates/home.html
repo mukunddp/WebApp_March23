@@ -3,6 +3,17 @@
 {% block content %}
 {% include 'navbar.html' %}
 {% load static %}
+<div>
+    <marquee behavior="10" direction="left">
+        <h5> {% for highlight in highlights %}
+            <a style="color: black; text-decoration: none;" href="{{ highlight.link }}">
+                {{ highlight.name }}
+            </a>
+            <span style="color: brown;"> | </span>
+            {% endfor %}
+        </h5>
+    </marquee>
+</div>
 <section style="
 background-image: url('{% static 'img/background.jpg' %}');
 background-size: cover;
@@ -13,6 +24,7 @@ min-height: 110vh;">
 
     <h1 class="home-heading"> School Management System </h1>
 </section>
+
 
 {% endblock %}
 

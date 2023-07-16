@@ -9,31 +9,28 @@
 <section class="container mt-5" style="background-color: white;">
     <div class="text-center">
         <h2 class="p-3" style="color: rgb(19, 93, 196);">
-            Add Department Detail!
+            Add Highlights!
         </h2>
     </div>
     <hr>
     <div class="p-3">
         <!-- Action should be added in side form  (call perticular url) the data will be sent by POST method ̥-->
-        <form class="row g-3" action="{% url 'add_department' %}" method="post">
+        <form class="row g-3" action="{% url 'add_highlight' %}" method="post">
             <!-- need to add CSRF token It will validate our form -->
             {% csrf_token %}
             <div class="col-md-6">
-                <label class="form-label">Department Name</label>
-                <input class="form-control" type="text" name="name" placeholder="Write your full name of Teacher"
+                <label class="form-label">Title of Highlight</label>
+                <input class="form-control" type="text" name="name" placeholder="Title of Highlight"
                     required>
             </div>
             <div class="col-md-6">
-                <label class="form-label">Head of Department</label>
-                <input type="text" class="form-control" name="hod" placeholder="Enter Name of HOD" required>
+                <label class="form-label">Redirect Link of Highlight</label>
+                <input type="text" class="form-control" name="link" placeholder="Link to redirect" required>
             </div>
-            <div class="col-12">
-                <label class="form-label">Description</label>
-                <textarea type="text" class="form-control" name="description" placeholder="Subjects" required></textarea>
-            </div>
+           
             <div class="text-center p-3">
                 <!-- Button Type Should be submit to call the form action -->
-                <button type="submit" class="btn btn-primary">Add Department</button>
+                <button type="submit" class="btn btn-primary">Add Highlight</button>
             </div>
         </form>
     </div>

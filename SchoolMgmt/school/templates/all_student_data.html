@@ -14,7 +14,9 @@
         <div class="card mt-3">
             <div class="card-header">
                 {{student.roll_no}} | {{ student.mobile_no }} | {{ student.email }}
+                {% if request.user.is_authenticated %}
                 <a href="{% url 'student_details' student.id %}" class="btn btn-primary float-end">See More..</a>
+                {% endif %}
             </div>
             <div class="card-body">
                 <h5 class="card-title">{{student.name}} | {{student.age}}</h5>

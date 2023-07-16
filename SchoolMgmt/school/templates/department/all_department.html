@@ -5,7 +5,7 @@
 <section class="container mt-5" style="background-color: white;">
     <div class="text-center">
         <h2 class="p-3" style="color: rgb(19, 93, 196);">
-            List of Teachers !
+            List of Departments !
         </h2>
     </div>
     <hr>
@@ -13,8 +13,10 @@
         {% for department in departments %}
         <div class="card mt-3">
             <div class="card-header">
-                {{department.name}} | {{ department.hod }} 
+                {{department.name}} | {{ department.hod }}
+                {% if request.user.is_authenticated %}
                 <a href="{% url 'show_department' department.id %}" class="btn btn-primary float-end">See More..</a>
+                {% endif %}
             </div>
             <div class="card-body">
                 <h5 class="card-title">{{department.description}}</h5>
