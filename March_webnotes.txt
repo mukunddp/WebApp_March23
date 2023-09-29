@@ -126,3 +126,8 @@ Home Page
 	Admin - 
 		Show all registered cases list
 		Every case will haveing status as pending/Active/Complete
+
+
+
+
+
